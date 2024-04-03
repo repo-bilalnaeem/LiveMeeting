@@ -1,4 +1,4 @@
-package com.beelol.meetingsApp
+package com.supersimon.meetingsApp
 import android.app.PictureInPictureParams
 import androidx.lifecycle.Lifecycle
 import android.util.Rational

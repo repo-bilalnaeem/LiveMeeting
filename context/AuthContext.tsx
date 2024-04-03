@@ -1,15 +1,19 @@
-import { createContext, useContext, useEffect, useState } from 'react';
-import * as SecureStore from 'expo-secure-store';
+import { createContext, useContext, useEffect, useState } from "react";
+import * as SecureStore from "expo-secure-store";
 
 interface AuthProps {
-  authState: { token: string | null; authenticated: boolean | null; user_id: string | null };
+  authState: {
+    token: string | null;
+    authenticated: boolean | null;
+    user_id: string | null;
+  };
   onRegister: (email: string, password: string) => Promise<any>;
   onLogin: (email: string, password: string) => Promise<any>;
   onLogout: () => Promise<any>;
   initialized: boolean;
 }
 
-const TOKEN_KEY = 'my-token';
+const TOKEN_KEY = "my-token";
 export const API_URL = process.env.EXPO_PUBLIC_SERVER_URL;
 const AuthContext = createContext<Partial<AuthProps>>({});
 
@@ -53,9 +57,9 @@ export const AuthProvider = ({ children }: any) => {
     try {
       // fetch POST request to /login
       const result = await fetch(`${API_URL}/login`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ email, password }),
       });
@@ -81,15 +85,15 @@ export const AuthProvider = ({ children }: any) => {
   const register = async (email: string, password: string) => {
     try {
       const result = await fetch(`${API_URL}/register`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ email, password }),
       });
 
       const json = await result.json();
-      console.log('register:', json);
+      console.log("register:", json);
 
       // Set our context state
       setAuthState({
